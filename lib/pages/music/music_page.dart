@@ -18,10 +18,13 @@ class MusicPage extends StatefulWidget {
 
 class MusicPageState extends State<MusicPage> {
   Music? selectedMusic;
+  int selectedMusicId = 0;
+
   AudioPlayer player = AudioPlayer();
+
   bool loaded = false;
   bool playing = false;
-  int selectedMusicId = 0;
+
   int currentMusicIndex = 0;
 
   List<Music> musicList = [];
@@ -29,9 +32,6 @@ class MusicPageState extends State<MusicPage> {
   @override
   void initState() {
     super.initState();
-    // Fetch the music list
-    // _fetchMusicList();
-    // Initialize the player
     player = AudioPlayer();
     // loadMusic();
   }
@@ -67,7 +67,7 @@ class MusicPageState extends State<MusicPage> {
   }
 
   void loadMusic() async {
-    print("Loading audio source: $baseUrl/${selectedMusic!.urlMusic}");
+    // print("Loading audio source: $baseUrl/${selectedMusic!.urlMusic}");
     try {
       await player.setAudioSource(
         AudioSource.uri(Uri.parse("$baseUrl/${selectedMusic!.urlMusic}")),
@@ -458,23 +458,6 @@ class MusicPageState extends State<MusicPage> {
               const SizedBox(
                 height: 25,
               ),
-              // FutureBuilder(
-              //     future: Provider.of<MusicProvider>(context, listen: false)
-              //         .getMusics(),
-              //     builder: (context, snapshot) {
-              //       if (snapshot.connectionState == ConnectionState.waiting) {
-              //         // Show a loading indicator or circular progress while waiting for data
-              //         return Center(
-              //           child: CircularProgressIndicator(),
-              //         );
-              //       } else if (snapshot.hasError) {
-              //         return Center(
-              //           child: Text('Error loading data'),
-              //         );
-              //       } else {
-              //         return musicListSection();
-              //       }
-              //     }),
               musicListSection(),
             ],
           ),

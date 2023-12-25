@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +144,7 @@ class _ArticlePageState extends State<ArticlePage> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Show a loading indicator or circular progress while waiting for data
               return Center(
-                child: CircularProgressIndicator(),
+                child: CupertinoActivityIndicator(),
               );
             } else if (snapshot.hasError) {
               return Center(

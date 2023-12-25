@@ -2,7 +2,6 @@ import 'package:mod_android/api_address.dart';
 import 'package:mod_android/model/car_status.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:mod_android/theme.dart';
 
 class CarStatusService {
   Future<CarStatus> getCarStatus() async {

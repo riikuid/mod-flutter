@@ -1,9 +1,12 @@
-import 'package:flutter/gestures.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:mod_android/model/movie/MovieGenre.dart';
+import 'package:mod_android/provider/genre_provider.dart';
+import 'package:mod_android/provider/movie_provider.dart';
 import 'package:mod_android/theme.dart';
 import 'package:mod_android/widget/category_card.dart';
 import 'package:mod_android/widget/movie_card.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 class MoviePage extends StatefulWidget {
@@ -14,7 +17,27 @@ class MoviePage extends StatefulWidget {
 }
 
 class _MoviePageState extends State<MoviePage> {
-  String selectedCategory = "Semua";
+  late bool _isLoading;
+
+  void initState() {
+    // await Provider.of<GenreProvider>(context, listen: false).getGenres();
+    loadGenres();
+    super.initState();
+  }
+
+  loadGenres() async {
+    setState(() {
+      _isLoading = false;
+    });
+    await Provider.of<GenreProvider>(context, listen: false).getGenres();
+    await Provider.of<MovieProvider>(context, listen: false).getMovies();
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
+  String selectedCategory = "All";
+  String genreFilter = "All";
 
   void _onCategoryCardTap(String category) {
     setState(() {
@@ -24,95 +47,40 @@ class _MoviePageState extends State<MoviePage> {
 
   @override
   Widget build(BuildContext context) {
+    GenreProvider genreProvider = Provider.of<GenreProvider>(context);
+    MovieProvider movieProvider = Provider.of<MovieProvider>(context);
+
     Widget categorySection() {
       return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CategoryCard(
-              selected: selectedCategory == "Semua",
-              category: "Semua",
+              selected: selectedCategory == "All",
+              category: "All",
               onTap: (isSelected) {
-                _onCategoryCardTap("Semua");
+                _onCategoryCardTap("All");
+                setState(() {
+                  genreFilter = "All";
+                });
               },
             ),
-            CategoryCard(
-              selected: selectedCategory == "Sci-Fi",
-              category: "Sci-Fi",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Sci-Fi");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Aksi",
-              category: "Aksi",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Aksi");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Animasi",
-              category: "Animasi",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Animasi");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Horror",
-              category: "Horror",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Horror");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Komedi",
-              category: "Komedi",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Komedi");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Misteri",
-              category: "Misteri",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Misteri");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Romantis",
-              category: "Romantis",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Romantis");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Thriller",
-              category: "Thriller",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Thriller");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Kuatir",
-              category: "Kuatir",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Kuatir");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Naliko",
-              category: "Naliko",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Naliko");
-              },
-            ),
-            CategoryCard(
-              selected: selectedCategory == "Science",
-              category: "Science",
-              onTap: (isSelected) {
-                _onCategoryCardTap("Science");
-              },
-            ),
+            ...genreProvider.genres
+                .map(
+                  (item) => CategoryCard(
+                    selected: selectedCategory == item.name,
+                    category: item.name,
+                    onTap: (isSelected) {
+                      setState(() {
+                        genreFilter = item.name;
+                      });
+                      _onCategoryCardTap(item.name);
+                    },
+                  ),
+                )
+                .toList(),
           ],
         ),
       );
@@ -162,32 +130,17 @@ class _MoviePageState extends State<MoviePage> {
         ),
         minItemWidth: 149.3,
         verticalGridSpacing: 20,
-        children: const [
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
-          MovieCard(),
+        children: [
+          ...movieProvider.movies
+              .map(
+                (item) => MovieCard(
+                  movie: item,
+                ),
+              )
+              .where((item) => genreFilter == "All"
+                  ? item.movie.id > 0
+                  : item.movie.genre.name == genreFilter)
+              .toList(),
         ],
       );
     }
@@ -237,6 +190,7 @@ class _MoviePageState extends State<MoviePage> {
           ),
         ),
       ),
+      backgroundColor: backgroundPrimary,
       body: Container(
         decoration: BoxDecoration(
           color: backgroundPrimary,
@@ -261,7 +215,26 @@ class _MoviePageState extends State<MoviePage> {
               const SizedBox(
                 height: 25,
               ),
-              movieList(),
+              FutureBuilder(
+                future: movieProvider.getMovies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // Show a loading indicator or circular progress while waiting for data
+                    return SizedBox(
+                      height: 200,
+                      child: Center(
+                        child: CupertinoActivityIndicator(),
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error loading data'),
+                    );
+                  } else {
+                    return movieList();
+                  }
+                },
+              ),
             ],
           ),
         ),

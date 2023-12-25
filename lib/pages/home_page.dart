@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mod_android/model/article/Article.dart';
 import 'package:mod_android/pages/article/detail_article_page.dart';
@@ -114,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                                     ConnectionState.waiting) {
                                   // Show a loading indicator or circular progress while waiting for data
                                   return Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CupertinoActivityIndicator(),
                                   );
                                 } else if (snapshot.hasError) {
                                   // Show an error message if there's an error

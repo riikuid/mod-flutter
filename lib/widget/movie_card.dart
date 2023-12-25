@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mod_android/api_address.dart';
+import 'package:mod_android/model/movie/Movie.dart';
+import 'package:mod_android/pages/movie/detail_movie_page.dart';
 import 'package:mod_android/theme.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key});
+  final Movie movie;
+  const MovieCard({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/detail-movie');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => DetailMoviePage(
+                  movie: movie,
+                )),
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,14 +28,14 @@ class MovieCard extends StatelessWidget {
             aspectRatio: 297 / 420,
             child: Container(
               // height: 222.7,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.transparent,
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(12.0),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(
-                    "assets/example_poster.png",
+                  image: NetworkImage(
+                    "$baseUrl/${movie.urlPoster}",
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -36,7 +46,7 @@ class MovieCard extends StatelessWidget {
             height: 8,
           ),
           Text(
-            "James Bond: Makanan Adalah kesukaanku",
+            movie.title,
             maxLines: 1,
             softWrap: true,
             overflow: TextOverflow.ellipsis,

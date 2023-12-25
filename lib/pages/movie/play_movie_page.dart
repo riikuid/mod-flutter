@@ -4,7 +4,8 @@ import 'package:mod_android/theme.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayMoviePage extends StatefulWidget {
-  const PlayMoviePage({Key? key}) : super(key: key);
+  final String urlVideo;
+  const PlayMoviePage({Key? key, required this.urlVideo}) : super(key: key);
 
   @override
   State<PlayMoviePage> createState() => _PlayMoviePageState();
@@ -16,9 +17,10 @@ class _PlayMoviePageState extends State<PlayMoviePage> {
 
   @override
   void initState() {
-    controllerVideo = VideoPlayerController.asset('assets/example_video.mp4');
+    controllerVideo =
+        VideoPlayerController.networkUrl(Uri.parse(widget.urlVideo));
     _chewieController = ChewieController(
-      allowFullScreen: false,
+      allowFullScreen: true,
       controlsSafeAreaMinimum:
           EdgeInsets.symmetric(vertical: 20, horizontal: 70),
       showControls: true,
@@ -48,11 +50,11 @@ class _PlayMoviePageState extends State<PlayMoviePage> {
         backgroundColor: statusCardColor,
         appBar: AppBar(
           centerTitle: true,
+          elevation: 0,
           actionsIconTheme: const IconThemeData(
             color: Colors.white,
             size: 25,
           ),
-          shadowColor: Colors.transparent,
           actions: const [
             Icon(
               Icons.volume_up_rounded,
@@ -71,22 +73,33 @@ class _PlayMoviePageState extends State<PlayMoviePage> {
             'assets/kai_logo.png',
             height: 20,
           ),
-          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/bg_primary.png"),
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+              ),
+            ),
+          ),
           leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
-            child: Image.asset(
-              "assets/icon_back.png",
-              height: 25,
+            child: const Icon(
+              Icons.home,
+              size: 25,
+              color: Colors.white,
             ),
           ),
-          elevation: 0,
         ),
         // extendBodyBehindAppBar: false,
         body: Container(
             height: double.infinity,
             width: double.infinity,
+            margin: EdgeInsets.symmetric(
+              vertical: 20,
+            ),
             child: Theme(
               data: ThemeData.light().copyWith(
                 platform: TargetPlatform.iOS,

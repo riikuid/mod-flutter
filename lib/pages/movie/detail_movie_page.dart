@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mod_android/api_address.dart';
+import 'package:mod_android/model/movie/Movie.dart';
+import 'package:mod_android/pages/movie/play_movie_page.dart';
 import 'package:mod_android/theme.dart';
 import 'package:mod_android/widget/movie_property.dart';
 
 class DetailMoviePage extends StatelessWidget {
-  const DetailMoviePage({super.key});
+  final Movie movie;
+  const DetailMoviePage({super.key, required this.movie});
+  // const DetailMoviePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +55,10 @@ class DetailMoviePage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              "https://images.unsplash.com/photo-1533050487297-09b450131914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+              "$baseUrl/${movie.item.urlThumbnail}",
             ),
             fit: BoxFit.cover,
           ),
@@ -91,18 +96,18 @@ class DetailMoviePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        MovieProperty(text: "Action"),
-                        MovieProperty(text: "2022"),
-                        MovieProperty(text: "90 menit"),
+                        MovieProperty(text: movie.genre.name),
+                        MovieProperty(text: movie.releaseYear),
+                        MovieProperty(text: "${movie.item.duration} menit"),
                       ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "James Bond 2019",
+                      movie.title,
                       style: primaryTextStyle.copyWith(
                         fontSize: 48,
                         fontWeight: semibold,
@@ -112,7 +117,7 @@ class DetailMoviePage extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      "Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the RenderFlex to fit within the available space instead of being sized to their natural size. This is considered an error condition because it indicates that there is content that cannot be seen. If the content is legitimately bigger than the available space, consider clipping it with a ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex, like a ListView.",
+                      movie.description,
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: regular,
@@ -159,7 +164,15 @@ class DetailMoviePage extends StatelessWidget {
                               MaterialStateProperty.all(Colors.transparent),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/play');
+                          print("$baseUrl/${movie.item.urlVideo}");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => PlayMoviePage(
+                                    urlVideo: "$baseUrl/${movie.item.urlVideo}",
+                                  )),
+                            ),
+                          );
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,

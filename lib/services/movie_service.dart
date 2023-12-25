@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:mod_android/api_address.dart';
-import 'package:mod_android/model/movie/MovieGenre.dart';
+import 'package:mod_android/model/movie/Movie.dart';
 
-class GenreService {
-  Future<List<MovieGenre>> getGenres() async {
-    var url = apiGenre;
+class MovieService {
+  Future<List<Movie>> getMovies() async {
+    var url = apiMovie;
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(
@@ -18,14 +18,14 @@ class GenreService {
 
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
-      List<MovieGenre> genres = [];
+      List<Movie> movies = [];
 
       for (var item in data) {
-        genres.add(MovieGenre.fromJson(item));
+        movies.add(Movie.fromJson(item));
       }
-      return genres;
+      return movies;
     } else {
-      throw Exception('Failed to get genres!');
+      throw Exception('Failed to get movies!');
     }
   }
 }
