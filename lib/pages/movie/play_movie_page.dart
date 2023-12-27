@@ -86,10 +86,9 @@ class _PlayMoviePageState extends State<PlayMoviePage> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: const Icon(
-              Icons.home,
-              size: 25,
-              color: Colors.white,
+            child: Image.asset(
+              "assets/icon_back.png",
+              height: 25,
             ),
           ),
         ),
