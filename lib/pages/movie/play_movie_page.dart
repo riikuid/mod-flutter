@@ -47,7 +47,7 @@ class _PlayMoviePageState extends State<PlayMoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: statusCardColor,
+        backgroundColor: backgroundSecondary,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,

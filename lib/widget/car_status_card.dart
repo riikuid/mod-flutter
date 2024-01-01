@@ -19,7 +19,7 @@ class CarStatusCard extends StatelessWidget {
         vertical: 8,
       ),
       decoration: BoxDecoration(
-        color: statusCardColor,
+        color: backgroundSecondary,
         borderRadius: const BorderRadius.all(
           Radius.circular(12.0),
         ),

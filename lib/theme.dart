@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// String urlApi = 'http://10.0.2.2:8000/';
-
 LinearGradient primaryGradient = const LinearGradient(
   colors: [Color(0xff6652ee), Color(0xffe04d6e)],
   stops: [0.2, 0.7],
@@ -32,12 +30,8 @@ LinearGradient blueGradientHorizontal = const LinearGradient(
 );
 
 Color backgroundPrimary = const Color(0xFF202125);
-Color statusCardColor = const Color(0xFF101010);
-Color baseMovieGradientColor = const Color(0xFF04001F);
-
-TextStyle hallo = GoogleFonts.satisfy(
-  color: Colors.white,
-);
+Color backgroundSecondary = const Color(0xFF101010);
+Color baseShadowGradient = const Color(0xFF04001F);
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: Colors.white,

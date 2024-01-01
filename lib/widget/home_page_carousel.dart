@@ -29,7 +29,7 @@ class HomePageCarouselState extends State<HomePageCarousel> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: statusCardColor,
+              color: backgroundSecondary,
               borderRadius: BorderRadius.all(
                 Radius.circular(12.0),
               ),
@@ -62,7 +62,7 @@ class HomePageCarouselState extends State<HomePageCarousel> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: statusCardColor,
+                          color: backgroundSecondary,
                           image: DecorationImage(
                             image: NetworkImage(
                               "$baseUrl/${item.thumbanail}",
@@ -79,11 +79,11 @@ class HomePageCarouselState extends State<HomePageCarousel> {
                               colors: [
                                 Colors.transparent, // Transparan di tengah
                                 Colors.transparent, // Transparan di tengah
-                                baseMovieGradientColor.withOpacity(
+                                baseShadowGradient.withOpacity(
                                     0.5), // Warna hitam dengan transparansi 50%
-                                baseMovieGradientColor.withOpacity(
+                                baseShadowGradient.withOpacity(
                                     0.8), // Warna hitam dengan transparansi 50%
-                                baseMovieGradientColor.withOpacity(
+                                baseShadowGradient.withOpacity(
                                     1), // Warna hitam dengan transparansi 50%
                               ],
                               begin: Alignment.topCenter,

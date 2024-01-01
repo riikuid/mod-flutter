@@ -61,7 +61,7 @@ class _ArticlePageCarouselState extends State<ArticlePageCarousel> {
                             child: Container(
                               height: 310,
                               decoration: BoxDecoration(
-                                color: statusCardColor,
+                                color: backgroundSecondary,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(12.0),
                                 ),

@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Text(
                             "Hallo",
-                            style: hallo.copyWith(
+                            style: primaryTextStyle.copyWith(
                               fontSize: 38,
                             ),
                           ),

@@ -70,19 +70,16 @@ class DetailMoviePage extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                baseMovieGradientColor
-                    .withOpacity(1), // 20px transparan di atas
-                baseMovieGradientColor
+                baseShadowGradient.withOpacity(1), // 20px transparan di atas
+                baseShadowGradient
                     .withOpacity(0.5), // Warna hitam dengan transparansi 50%
                 Colors.transparent, // Transparan di tengah
-                baseMovieGradientColor
+                baseShadowGradient
                     .withOpacity(0.5), // Warna hitam dengan transparansi 50%
-                baseMovieGradientColor
+                baseShadowGradient
                     .withOpacity(0.8), // Warna hitam dengan transparansi 50%
-                baseMovieGradientColor
-                    .withOpacity(1), // 100px transparan di bawah
-                baseMovieGradientColor
-                    .withOpacity(1), // 100px transparan di bawah
+                baseShadowGradient.withOpacity(1), // 100px transparan di bawah
+                baseShadowGradient.withOpacity(1), // 100px transparan di bawah
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

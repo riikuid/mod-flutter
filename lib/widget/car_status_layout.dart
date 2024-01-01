@@ -61,7 +61,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -90,12 +90,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -116,7 +116,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -145,12 +145,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -171,7 +171,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -200,12 +200,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -226,7 +226,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -255,12 +255,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -371,7 +371,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -400,12 +400,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -426,7 +426,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -455,12 +455,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -481,7 +481,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -510,12 +510,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
@@ -536,7 +536,7 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: statusCardColor,
+                    color: backgroundSecondary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12.0),
                     ),
@@ -565,12 +565,12 @@ class _CarStatusLayoutState extends State<CarStatusLayout> {
                             width: 10,
                           ),
                           Shimmer.fromColors(
-                            baseColor: statusCardColor,
+                            baseColor: backgroundSecondary,
                             highlightColor: Colors.white24,
                             child: Container(
                               width: MediaQuery.of(context).size.width / 5.8,
                               height: 20,
-                              color: statusCardColor,
+                              color: backgroundSecondary,
                             ),
                           ),
                         ],
