@@ -247,14 +247,14 @@ class MusicPageState extends State<MusicPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        loaded ? selectedMusic!.title : "-",
+                        loaded ? selectedMusic!.title : " ",
                         style: primaryTextStyle.copyWith(
                           fontSize: 45,
-                          fontWeight: FontWeight.w900,
+                          fontWeight: bold,
                         ),
                       ),
                       Text(
-                        loaded ? selectedMusic!.singer.name : "-",
+                        loaded ? selectedMusic!.singer.name : " ",
                         style: primaryTextStyle.copyWith(
                           fontSize: 25,
                           fontWeight: regular,
